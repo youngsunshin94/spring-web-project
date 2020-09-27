@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.mapper.ReplyMapper">
+
+	<insert id="insert">
+		insert into tbl_reply(reply, replyer, bno)
+		values(#{reply}, #{replyer}, #{bno})
+		
+		<selectKey keyProperty="rno" order="AFTER" resultType="long">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="read" resultType="com.mycom.domain.ReplyVO">
+		select * from tbl_reply where rno = #{rno}
+	</select>
+	
+	<update id="update">
+		update tbl_reply
+		set reply = #{reply},
+		updatedate = NOW()
+		where rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_reply where rno = #{rno}
+	</delete>
+	
+	<select id="getList" resultType="com.mycom.domain.ReplyVO">
+		select * from tbl_reply 
+		where bno = #{bno}
+		order by rno asc
+		limit #{cri.skipCount}, #{cri.amount}
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+		select count(*) from tbl_reply where bno = #{bno}
+	</select>
+	
+</mapper>

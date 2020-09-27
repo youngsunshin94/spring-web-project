@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.mapper.BoardMapper">
+
+	<insert id="insert">
+		insert into tbl_board(title, content, writer)
+		values(#{title}, #{content}, #{writer})
+		
+		<selectKey keyProperty="bno" order="AFTER" resultType="long">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="read" resultType="com.mycom.domain.BoardVO">
+		select * from tbl_board where bno = #{bno}
+	</select>
+	
+	<update id="update">
+		update tbl_board
+		set title = #{title},
+		content = #{content},
+		writer = #{writer}
+		where bno = #{bno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+	
+	<sql id="criteria">
+		<trim prefix=" where (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					 <choose>
+					 	<when test="type == 'T'.toString()">
+					 		title like concat('%',#{keyword},'%')
+					 	</when>
+					 	<when test="type == 'C'.toString()">
+					 		content like concat('%',#{keyword},'%')
+					 	</when>
+					 	<when test="type == 'W'.toString()">
+					 		writer like concat('%',#{keyword},'%')
+					 	</when>
+					 </choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="getList" resultType="com.mycom.domain.BoardVO">
+		select * from tbl_board
+		<include refid="criteria"></include>
+		order by bno desc
+		limit #{skipCount}, #{amount}
+	</select>
+	
+	<update id="hitUp">
+		update tbl_board
+		set hit = hit +1
+		where bno = #{bno}
+	</update>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board
+		<include refid="criteria"></include>
+	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_board
+		set replyCnt = replyCnt + #{amount}
+		where bno = #{bno}
+	</update>
+	
+</mapper>

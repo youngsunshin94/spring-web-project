@@ -1,0 +1,121 @@
+.ct_body {
+    margin: 50px 0;
+}
+.ct_body>ul {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.ct_body>ul>li {
+    padding: 20px 8px 25px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.conts {
+    height: 146px;
+}
+.conts::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.conts>div {
+    float: left;
+}
+.conts_text {
+    width: 85%;
+}
+.conts_text>h2 {
+    height: 25px;
+    line-height: 24px;
+    overflow: hidden;
+    font-size: 20px;
+    
+}
+.conts_text>p {
+    margin: 20px 0;
+    width: 50%;
+    height: 46px;
+    overflow: hidden;
+    font-size: 16px;
+    color: #888;
+}
+.thumbnail {
+    width: 15%;
+}
+.thumbnail>img {
+    width: 100%;
+    background-size: cover;
+}
+.conts_text>div {
+    color: #666;
+}
+.conts_text>div>span {
+    margin-right: 10px;
+}
+
+/*  contents footer */
+.ct_footer {
+    width: 100%;
+    padding: 100px 0;
+    position: relative;
+}
+select {
+    padding: 10px 0;
+    border: 1px solid #000;
+    border-radius: 3px; 
+}
+.search-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.search-box input {
+    padding: 10px 0;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+.search-box button {
+    padding: 10px 10px;
+    font-size: 13px;
+    margin-left: 5px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.search-box button:hover {
+    color: #4279ff;
+    border: 1px solid #4279ff;
+}
+.paging {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.paginate {
+    background-color: #d9dddf;;
+    border-radius: 3px;
+}
+
+.paginate::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.paginate li {
+    /* padding: 10px; */
+    float: left;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.paginate li a {
+    display: inline-block;
+    padding: 7px;
+}
+
+.paginate li.active {
+    background-color: #4279ff;
+    color: #fff;
+}
