@@ -2,6 +2,8 @@
 <p>Yong`s Board는 Spring을 사용해서 개발한 게시판입니다. 게시판, 댓글, 파일 업로드, 로그인 기능이 있습니다.<br>
 그리고 AWS로 배포를 하였습니다.</p>
 <br>
+<a href="http://15.164.150.244:8080/boardProject/board/list">게시판 이동</a>
+<br>
 <h1>개발 환경</h1>
 <ul>
 <li>Eclipse</li>
