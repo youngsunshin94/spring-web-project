@@ -13,13 +13,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CommonExceptionAdvice {
 	
-	@ExceptionHandler(Exception.class)
-	public String except(Exception ex, Model model) {
-		model.addAttribute("exception", ex);
-		
-		return "error_page";
-	}
-	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handle404(NoHandlerFoundException ex) {

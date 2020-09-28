@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/login.css">
+    <link rel="stylesheet" href="/boardProject/resources/css/login.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Yong`s Board</title>
 </head>
@@ -14,10 +14,10 @@
     <div class="wrapper">
 
         <div class="logo">
-            <a href="/board/list">Yong`s Board</a>
+            <a href="/boardProject/board/list">Yong`s Board</a>
         </div>
 
-        <form action="/member/join" method="post" id="memberForm">
+        <form action="/boardProject/member/join" method="post" id="memberForm">
         	<input type='hidden' name='${_csrf.parameterName }' value="${_csrf.token }">
             <div>
                 <input type="text" name="userid" placeholder="아이디" id="input_text">
@@ -64,12 +64,12 @@ $(document).ready(function(){
 		
 		if(userIdCheck.test(userid)) {
 			$.ajax({
-				url:"checkId",
-				type:'post',
+				url:"/boardProject/checkId",
+				type:'get',
 				data:{userid:userid},
 				dataType:"json",
 				success:function(result){
-			
+					console.log(result);
 					if(result == 1) {			
 						$("#idInfo").css("color", "red");
 						$("#idInfo").html("이미 사용 중인 아이디입니다.");

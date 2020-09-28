@@ -2,7 +2,7 @@ var replyService = (function(){
 	
 	function add(reply, callback, error) {
 		$.ajax({
-			url:"/replies/new",
+			url:"/boardProject/replies/new",
 			type:'post',
 			contentType:"application/json; charset=utf-8",
 			data:JSON.stringify(reply),
@@ -19,7 +19,7 @@ var replyService = (function(){
 		var bno = param.bno;
 		var page = param.page || 1;
 		
-		$.getJSON("/replies/pages/"+bno+"/"+page+".json", function(result){
+		$.getJSON("/boardProject/replies/pages/"+bno+"/"+page+".json", function(result){
 			if(callback){
 				callback(result.list, result.replyCnt);
 			}
@@ -27,7 +27,7 @@ var replyService = (function(){
 	}
 	
 	function get(rno, callback, error) {
-		$.getJSON("/replies/"+ rno +".json", function(result){
+		$.getJSON("/boardProject/replies/"+ rno +".json", function(result){
 			if(callback){
 				callback(result);
 			}
@@ -36,7 +36,7 @@ var replyService = (function(){
 	
 	function update(reply, callback, error) {
 		$.ajax({
-			url:"/replies/"+reply.rno,
+			url:"/boardProject/replies/"+reply.rno,
 			type:"put",
 			contentType:"application/json",
 			data:JSON.stringify(reply),
@@ -50,7 +50,7 @@ var replyService = (function(){
 	
 	function remove(rno, replyer, callback, error) {
 		$.ajax({
-			url:"/replies/"+rno,
+			url:"/boardProject/replies/"+rno,
 			type:'delete',
 			data:JSON.stringify({rno:rno,replyer:replyer}),
 			contentType:"application/json; charset=utf-8",

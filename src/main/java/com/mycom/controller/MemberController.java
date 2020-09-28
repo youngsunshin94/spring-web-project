@@ -3,6 +3,7 @@ package com.mycom.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,13 +22,14 @@ public class MemberController {
 	@Autowired
 	private PasswordEncoder pwEncoder;
 	
-	@PostMapping("checkId")
+	@GetMapping("/checkId")
 	@ResponseBody
 	public int checkId(String userid) {
+		log.info("check userid : " + userid);
 		return service.checkId(userid);
 	}
 	
-	@PostMapping("member/join")
+	@PostMapping("/member/join")
 	public String memberJoin(MemberVO vo) {
 		
 		vo.setUserpw(pwEncoder.encode(vo.getUserpw()));

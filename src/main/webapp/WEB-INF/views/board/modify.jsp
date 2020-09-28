@@ -9,28 +9,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yong`s Board</title>
-    <link rel="stylesheet" href="/resources/css/common.css">
-    <link rel="stylesheet" href="/resources/css/register1.css">
+    <link rel="stylesheet" href="/boardProject/resources/css/common.css">
+    <link rel="stylesheet" href="/boardProject/resources/css/register1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/resources/js/logout.js"></script>
+    <script src="/boardProject/resources/js/logout.js"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="header_wrapper">
             <div class="header">
                 <div class="logo">
-                    <a href="/board/list">Yong`s board</a>
+                    <a href="/boardProject/board/list">Yong`s board</a>
                 </div>      
                 <sec:authorize access="isAnonymous()">
 					<div class="hd_link">
-                    	<a href="/customLogin"><i class="fas fa-sign-in-alt"></i> 로그인</a>
+                    	<a href="/boardProject/customLogin"><i class="fas fa-sign-in-alt"></i> 로그인</a>
                 	</div>                
                 </sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
 					<div class="hd_link">
-						<form action="/customLogout" method="post" id="logoutForm">
+						<form action="/boardProject/customLogout" method="post" id="logoutForm">
 							<input type='hidden' name="${_csrf.parameterName }" value="${_csrf.token }">
 						</form>
                     	<a id="logoutTag"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
@@ -43,7 +43,7 @@
                 <h2>게시글 수정</h2>
             </div>
             <div class="ct_body">
-                <form action="/board/modify" method="post" id="form">
+                <form action="/boardProject/board/modify" method="post" id="form">
                 	<input type='hidden' name="bno" value="${board.bno }">
                 	<input type="hidden" name="pageNum" value="${cri.pageNum }">
 					<input type="hidden" name="amount" value="${cri.amount }">
@@ -132,7 +132,7 @@ $(document).ready(function(){
 		var keywordTag = $("#form").find("input[name='keyword']").clone();
 		
 		$("#form").empty();
-		$("#form").attr("action","/board/list").attr("method","get");
+		$("#form").attr("action","/boardProject/board/list").attr("method","get");
 		
 		$("#form").append(pageNumTag);
 		$("#form").append(amountTag);
@@ -144,7 +144,7 @@ $(document).ready(function(){
 	$("button[data-oper='remove']").on("click", function(){
 
 		if(confirm("삭제하시겠습니까?")){
-			$("#form").attr("action","/board/remove");
+			$("#form").attr("action","/boardProject/board/remove");
 			
 			$("#form").submit();			
 		}
@@ -152,7 +152,7 @@ $(document).ready(function(){
 	
 	var bnoValue = '<c:out value="${board.bno}"/>';
 	
-	$.getJSON("/board/getAttachList", {bno:bnoValue}, function(list){
+	$.getJSON("/boardProject/board/getAttachList", {bno:bnoValue}, function(list){
 		
 		var str = "";
 		
@@ -195,7 +195,7 @@ $(document).ready(function(){
 		}
 		
 		$.ajax({
-			url:'/uploadAjaxAction',
+			url:'/boardProject/uploadAjaxAction',
 			type:'post',
 			contentType:false,
 			processData:false,

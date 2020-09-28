@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/login.css">
+    <link rel="stylesheet" href="/boardProject/resources/css/login.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Yong`s Board</title>
 </head>
@@ -17,10 +17,10 @@
     <div class="wrapper">
 
         <div class="logo">
-            <a href="/board/list">Yong`s Board</a>
+            <a href="/boardProject/board/list">Yong`s Board</a>
         </div>
 
-        <form action="/login" method="post" id="loginForm">
+        <form action="/boardProject/login" method="post" id="loginForm">
             <div>
                 <input type="text" name="username" placeholder="아이디" id="input_text">
             </div>
@@ -44,7 +44,7 @@
 	});
 	
 	$("#signUpBtn").on("click", function(){
-		self.location = "/signUp";
+		self.location = "/boardProject/signUp";
 	});
 </script>
 </body>

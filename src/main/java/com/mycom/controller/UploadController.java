@@ -31,6 +31,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
@@ -61,7 +62,7 @@ public class UploadController {
 					.withRegion(this.region)
 					.build();
 	}
-
+	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	@ResponseBody
@@ -88,8 +89,10 @@ public class UploadController {
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
 							
 			try {
-				
-				s3Client.putObject(new PutObjectRequest(bucket + "/" + folderPath, uploadFileName, multipartFile.getInputStream(), null)
+				ObjectMetadata objMeta = new ObjectMetadata();
+				byte[] bytes = IOUtils.toByteArray(multipartFile.getInputStream());
+				objMeta.setContentLength(bytes.length);
+				s3Client.putObject(new PutObjectRequest(bucket + "/" + folderPath, uploadFileName, multipartFile.getInputStream(), objMeta)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 				
 				String uploadFolderPath = s3Client.getUrl(bucket + "/" + folderPath, uploadFileName).toString();

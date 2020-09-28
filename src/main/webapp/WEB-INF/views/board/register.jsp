@@ -9,28 +9,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yong`s Board</title>
-    <link rel="stylesheet" href="/resources/css/common.css">
-    <link rel="stylesheet" href="/resources/css/register1.css">
+    <link rel="stylesheet" href="/boardProject/resources/css/common.css">
+    <link rel="stylesheet" href="/boardProject/resources/css/register1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/resources/js/logout.js"></script>
+    <script src="/boardProject/resources/js/logout.js"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="header_wrapper">
             <div class="header">
                 <div class="logo">
-                    <a href="/board/list">Yong`s board</a>
+                    <a href="/boardProject/board/list">Yong`s board</a>
                 </div>      
                 <sec:authorize access="isAnonymous()">
 					<div class="hd_link">
-                    	<a href="/customLogin"><i class="fas fa-sign-in-alt"></i> 로그인</a>
+                    	<a href="/boardProject/customLogin"><i class="fas fa-sign-in-alt"></i> 로그인</a>
                 	</div>                
                 </sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
 					<div class="hd_link">
-						<form action="/customLogout" method="post" id="logoutForm">
+						<form action="/boardProject/customLogout" method="post" id="logoutForm">
 							<input type='hidden' name="${_csrf.parameterName }" value="${_csrf.token }">
 						</form>
                     	<a id="logoutTag"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
@@ -43,7 +43,7 @@
                 <h2>게시글 작성</h2>
             </div>
             <div class="ct_body">
-                <form action="/board/register" method="post" id="boardForm">
+                <form action="/boardProject/board/register" method="post" id="boardForm">
                 	<input type='hidden' name="${_csrf.parameterName }" value="${_csrf.token }">
                     <div class="form-group">
                         <input type="text" placeholder="Title" name="title" class="input_title" style="font-family: Georgia, 'Times New Roman', Times, serif;">
@@ -129,9 +129,9 @@ $(document).ready(function(){
 			formData.append("uploadFile", files[i]);
 		}
 		
-		$.ajax({
-			url:"/uploadAjaxAction",
-			type:'post',
+		$.ajax({ 
+			url:"/boardProject/uploadAjaxAction",
+			type:'POST',
 			contentType:false,
 			processData:false,
 			beforeSend:function(xhr) {
@@ -141,6 +141,9 @@ $(document).ready(function(){
 			dataType:"json",
 			success:function(result){
 				showUploadFile(result);
+			},
+			error:function(request, status ,error) {
+				console.log("request : " + request.status +"\n" + "message:" + request.responseText +"\n" +"error:" + error);
 			}
 		});
 		
@@ -184,33 +187,13 @@ $(document).ready(function(){
 		});
 	}
 	
-	/* $(".uploadResult").on("click", "span", function(){
-		var targetLi = $(this).closest("li");
-		var fileName = $(this).data('file');
-		var type = $(this).data('type');
-		
-		$.ajax({
-			url:'/deleteFile',
-			type:'post',
-			data:{fileName:fileName, type:type},
-			dataType:'text',
-			beforeSend:function(xhr) {
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			},
-			success:function(result){
-				alert(result);
-				targetLi.remove();
-			}
-		});
-		
-	}); */
 	
 	$(".uploadResult").on("click", "span", function(){
 		var targetLi = $(this).closest("li");
 		var fileName = targetLi.data('path') + "/" + targetLi.data('uuid') + "_" + targetLi.data('filename');
 		
 		$.ajax({
-			url:'/deleteFiles',
+			url:'/boardProject/deleteFiles',
 			type:'post',
 			data:{fileName:fileName},
 			dataType:'text',

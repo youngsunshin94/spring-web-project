@@ -11,7 +11,7 @@
 잠시만 기다려주세요.
 
 <script type="text/javascript">
-	self.location = "/board/list";
+	self.location = "/boardProject/board/list";
 </script>
 </body>
 </html>
