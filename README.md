@@ -29,7 +29,8 @@
 <li>RDS</li>
 <li>S3</li>
 </ul>
-
+<h1>ERD</h1>
+<img src="https://user-images.githubusercontent.com/54887888/94978483-74d04800-0558-11eb-9b7e-bd975257862e.png" width="90%">
 <h1>Spring Project</h1><br>
 <h2>게시판</h2>
 <p>게시판은 기본적으로 모델2 방식으로 개발하였습니다. GET/POST를 이용하여 CURD를 구현했고 <br>mybatis를 이용해서 데이터를 처리하였습니다.
