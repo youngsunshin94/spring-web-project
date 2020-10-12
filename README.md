@@ -22,6 +22,7 @@
 <li>JQuery</li>
 <li>Ajax</li>
 <li>Mysql</li>
+<li>Jsp</li>
 </ul>
 <h1>AWS</h1>
 <ul>
