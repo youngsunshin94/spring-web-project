@@ -1,6 +1,5 @@
 <h1>Yong`s Board</h1>
-<p>Yong`s Board는 Spring을 사용해서 개발한 게시판입니다. spring mvc를 이용하여 모델2방식으로 Controller, Service, Mapper로 기능별로 개발하였고 mybatis를 사용했고 게시판, 댓글, 파일 업로드, 로그인 기능이 있습니다.<br>
-그리고 AWS로 배포를 하였습니다.</p>
+<p>Yong`s Board는 Spring을 사용해서 개발한 게시판입니다. spring mvc를 이용하여 모델2방식으로 Controller, Service, Mapper로 기능별로 개발하였고 mybatis를 사용했고 게시판, 댓글, 파일 업로드, 로그인 기능이 있습니다. 그리고 AWS로 배포를 하였습니다.</p>
 <br>
 <a href="http://15.164.150.244:8080/boardProject/board/list" target="_blank">게시판 이동</a>
 <br>
