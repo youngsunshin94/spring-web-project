@@ -29,6 +29,8 @@
 <li>RDS</li>
 <li>S3</li>
 </ul>
+<h1>프로젝트 구조<h1>
+<img src="https://user-images.githubusercontent.com/54887888/97070914-0cd0c700-1617-11eb-9463-0aaee42ca6c9.png">
 <h1>ERD</h1>
 <img src="https://user-images.githubusercontent.com/54887888/94978483-74d04800-0558-11eb-9b7e-bd975257862e.png" width="90%">
 <h1>Spring Project</h1><br>
